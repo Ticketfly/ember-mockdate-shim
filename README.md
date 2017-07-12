@@ -15,7 +15,7 @@ MockDate's `set` and `reset` methods are renamed to `freezeDateAt` and `unfreeze
 ```js
 import { freezeDateAt, unfreezeDate } from 'ember-mockdate-shim';
 
-freezeDate(new Date('1/12/2017'));
+freezeDateAt(new Date('1/12/2017'));
 unfreezeDate();
 ```
 
