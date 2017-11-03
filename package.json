@@ -1,7 +1,7 @@
 {
   "name": "ember-mockdate-shim",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "ES6 accessible module for MockDate within your Ember application",
   "keywords": [
     "ember-addon"
   ],
@@ -11,7 +11,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/Ticketfly/ember-mockdate-shim",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
