@@ -23,6 +23,8 @@ This is primarily useful for keeping the time data consistent between tests (ie:
 
 You can use this in the `beforeEach` and `afterEach` hooks of your tests, or anywhere else you want to freeze the date at, how ever many times you want!
 
+Please note that acceptance test support is only available in Ember >2.15.1 as that is when `backburner.js` introduced the ability to make "now" configurable. More info [here](https://github.com/BackburnerJS/backburner.js/commit/a6fe19eb26c2b7ed8360de19ca0cc9ae5b05f297).
+
 For use cases outside of tests, keep in mind that the shim is not included in production builds. See [index.js](https://github.com/Ticketfly/ember-mockdate-shim/blob/master/index.js) for more info.
 
 
