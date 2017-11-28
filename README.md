@@ -25,12 +25,6 @@ You can use this in the `beforeEach` and `afterEach` hooks of your tests, or any
 
 For use cases outside of tests, keep in mind that the shim is not included in production builds. See [index.js](https://github.com/Ticketfly/ember-mockdate-shim/blob/master/index.js) for more info.
 
-## Developing
-
-* `git clone <repository-url>` this repository
-* `cd ember-mockdate-shim`
-* `npm install`
-* `bower install`
 
 ## Running
 
@@ -39,7 +33,7 @@ For use cases outside of tests, keep in mind that the shim is not included in pr
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
+* `yarn test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
