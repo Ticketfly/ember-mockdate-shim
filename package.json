@@ -1,6 +1,6 @@
 {
   "name": "ember-mockdate-shim",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ES6 accessible module for MockDate within your Ember application",
   "keywords": [
     "ember-addon"
