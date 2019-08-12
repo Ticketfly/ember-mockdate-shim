@@ -20,7 +20,7 @@ const { set, reset } = MockDate || {
  * https://github.com/BackburnerJS/backburner.js/pull/264
  */
 const freezeDateAt = (...args) => {
-  trySet(Ember, 'run.backburner._platform.now', () => originalDate());
+  trySet(Ember, 'run.backburner._platform.now', originalDate.now);
   set(args);
 };
 
