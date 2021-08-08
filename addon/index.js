@@ -1,13 +1,13 @@
 import MockDate from 'mockdate';
 import { run } from '@ember/runloop';
-import { trySet } from "@ember/object";
+import { trySet } from '@ember/object';
 
 const originalDate = Date;
 const originalPlatformNow = run.backburner._platform.now;
 
 const { set, reset } = MockDate || {
   set() {},
-  reset() {}
+  reset() {},
 };
 
 /*
@@ -19,7 +19,7 @@ const { set, reset } = MockDate || {
  * https://github.com/BackburnerJS/backburner.js/pull/264
  */
 const freezeDateAt = (...args) => {
-  trySet(run, 'backburner._platform.now', () => originalDate());
+  trySet(run, 'backburner._platform.now', originalDate.now());
   set(args);
 };
 
@@ -28,7 +28,4 @@ const unfreezeDate = (...args) => {
   reset(args);
 };
 
-export {
-  freezeDateAt,
-  unfreezeDate
-};
+export { freezeDateAt, unfreezeDate };
