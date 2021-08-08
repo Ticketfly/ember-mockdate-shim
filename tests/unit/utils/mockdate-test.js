@@ -4,10 +4,10 @@ import { freezeDateAt, unfreezeDate } from 'ember-mockdate-shim';
 module('Unit | Utility | mockdate', {
   afterEach() {
     unfreezeDate();
-  }
+  },
 });
 
-test('freezes `new Date()`', function(assert) {
+test('freezes `new Date()`', function (assert) {
   freezeDateAt(new Date('1/1/2000'));
 
   const result = new Date();
@@ -15,7 +15,7 @@ test('freezes `new Date()`', function(assert) {
   assert.equal(result.getFullYear(), 2000, 'Year is the same as frozen date');
 });
 
-test('unfreezes date', function(assert) {
+test('unfreezes date', function (assert) {
   freezeDateAt(new Date('2/2/1992'));
 
   const frozenResult = new Date();
@@ -24,5 +24,9 @@ test('unfreezes date', function(assert) {
 
   const unfrozenResult = new Date();
 
-  assert.notEqual(frozenResult.getFullYear(), unfrozenResult.getFullYear(), "Date is different after unfreezing");
+  assert.notEqual(
+    frozenResult.getFullYear(),
+    unfrozenResult.getFullYear(),
+    'Date is different after unfreezing'
+  );
 });

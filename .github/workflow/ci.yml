@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+  schedule:
+    - cron: '0 4 * * 5' # Fridays at 4am
+
+jobs:
+  dependencies:
+    name: Install dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Use Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-12.x-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-12.x
+      - run: yarn install --frozen-lockfile
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+
+  lint:
+    needs: dependencies
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Use Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-12.x-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-12.x
+      - name: ESLint
+        uses: wearerequired/lint-action@v1
+        with:
+          eslint: true
+          prettier: true
+
+      - name: Ember Template Lint
+        run: yarn lint:hbs
+
+  test:
+    needs: dependencies
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Use Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-12.x-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-12.x
+      - name: Run tests
+        run: yarn test:ember
+
+  test-try:
+    name: Scenario Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: ${{ matrix.allow-failure || false }}
+    needs:
+      - test
+    strategy:
+      fail-fast: true
+      matrix:
+        scenario:
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-lts-3.24
+          - ember-release
+          - ember-beta
+          - ember-default-with-jquery
+          - ember-classic
+          - embroider-safe
+          - embroider-optimized
+        allow-failure: [false]
+        include:
+          - scenario: ember-canary
+            allow-failure: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+
+      - name: Use Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-12.x-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-12.x
+      - name: Test
+        run: yarn ember try:one ${{ matrix.scenario }}
