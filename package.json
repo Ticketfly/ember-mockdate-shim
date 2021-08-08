@@ -1,6 +1,6 @@
 {
   "name": "ember-mockdate-shim",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.1",
   "description": "ES6 accessible module for MockDate within your Ember application",
   "keywords": [
     "ember-addon"
@@ -26,11 +26,10 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "broccoli-funnel": "^1.2.0",
-    "broccoli-merge-trees": "^2.0.0",
+    "ember-auto-import": "^1.11.3",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
-    "mockdate": "^2.0.1"
+    "mockdate": "^3.0.5"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
@@ -40,7 +39,6 @@
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-auto-import": "^1.11.3",
     "ember-cli": "~3.27.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-inject-live-reload": "^2.0.2",
