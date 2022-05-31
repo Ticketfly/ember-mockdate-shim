@@ -1,12 +1,7 @@
-import Component from "@ember/component";
-import layout from '../templates/components/index-page';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  layout,
-  elementId: 'index-page',
-
-  init() {
-    this._super(...arguments);
-    this.set('dateYear', new Date().getFullYear());
-  },
-});
+export default class IndexPageComponent extends Component {
+  get dateYear() {
+    return new Date().getFullYear();
+  }
+}

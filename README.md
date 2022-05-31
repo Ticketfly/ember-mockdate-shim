@@ -4,6 +4,12 @@
 
 ES6 accessible module for [MockDate](https://github.com/boblauer/MockDate) within your Ember applications.
 
+## Compatibility
+
+* Ember.js v3.24 or above
+* Ember CLI v3.24 or above
+* Node.js v12 or above
+  
 ## Installation
 
 `ember install ember-mockdate-shim`
@@ -28,19 +34,11 @@ Please note that acceptance test support is only available in Ember >2.15.1 as t
 For use cases outside of tests, keep in mind that the shim is not included in production builds. See [index.js](https://github.com/Ticketfly/ember-mockdate-shim/blob/master/index.js) for more info.
 
 
-## Running
+## Contributing
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
-## Running Tests
 
-* `yarn test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+## License
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+This project is licensed under the [MIT License](LICENSE.md).
